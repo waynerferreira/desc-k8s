@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wayner-pod-privado
+spec:
+  containers:
+  - name: wayner-container
+    image: wayner/imagewayner
+  imagePullSecrets:
+  - name: dockerhub-test
+---
