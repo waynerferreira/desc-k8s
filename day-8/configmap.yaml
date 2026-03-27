@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: default
+  immutable: true # torna o ConfigMap imutável
+data:
+  nginx.conf: |-
+    events { }
+
+    http {
+      server {
+        listen 80;
+        listen 443 ssl;
+
+        ssl_certificate /etc/nginx/tls/certificado.crt;
+        ssl_certificate_key /etc/nginx/tls/chave-privada.key;
+
+        location / {
+          return 200 'Fala cole!!\n';
+          add_header Content-Type text/plain;
+        } 
+      }
+    }
+
+
+
