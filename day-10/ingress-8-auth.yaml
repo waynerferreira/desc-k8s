@@ -4,8 +4,16 @@ metadata:
   name: giropops-senhas
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/auth-type: "basic"
+    nginx.ingress.kubernetes.io/auth-secret: "girpops-senhas-users"
+    nginx.ingress.kubernetes.io/auth-realm: "Autenticação Necessaria!"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    #cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
     ingressClassName: nginx
+    tls:
+    - hosts: giropops-containers.expert
+      secretName: giropops-containers-expert-tls
     rules:
     - host: giropops-containers.expert
       http: 
